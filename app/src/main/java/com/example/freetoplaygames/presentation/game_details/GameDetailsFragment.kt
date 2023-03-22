@@ -59,9 +59,11 @@ class GameDetailsFragment : Fragment() {
                     view.findNavController().popBackStack()
                 }
                 binding.progressBarForDetails.visibility=View.GONE
+                binding.detailsView.visibility=View.VISIBLE
             }
             if(it.isLoading){
                 binding.progressBarForDetails.visibility=View.VISIBLE
+                binding.detailsView.visibility=View.GONE
             }
 
             if(it.error.isNotEmpty()){
