@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freetoplaygames.R
 import com.example.freetoplaygames.databinding.FragmentGameListBinding
 import dagger.hilt.android.AndroidEntryPoint
 

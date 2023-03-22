@@ -8,7 +8,9 @@
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/drawable/genre_corner.xml" value="0.1" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/drawable/ic_navigate.xml" value="0.1215" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/drawable/progress.xml" value="0.194" />
+        <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/drawable/requirements_card_shape.xml" value="0.108" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/layout/fragment_game_details.xml" value="0.25" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/layout/fragment_game_list.xml" value="0.1" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
         <entry key="..\:/Users/Admin/FreeToPlayGames/app/src/main/res/layout/game_item_layout.xml" value="0.33" />

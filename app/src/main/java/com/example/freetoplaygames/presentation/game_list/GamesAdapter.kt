@@ -1,5 +1,6 @@
 package com.example.freetoplaygames.presentation.game_list
 
+import android.app.FragmentHostCallback
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -8,12 +9,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.freetoplaygames.R
 import com.example.freetoplaygames.domain.model.Game
+import com.example.freetoplaygames.presentation.game_details.GameDetailsFragmentArgs
 
 class GamesAdapter : PagingDataAdapter<Game,GamesAdapter.MyViewHolder>(REPO_COMPARATOR){
 
@@ -55,6 +59,11 @@ class GamesAdapter : PagingDataAdapter<Game,GamesAdapter.MyViewHolder>(REPO_COMP
             val webPage = Uri.parse(dataAtPosition.gameUrl)
             val webIntent = Intent(Intent.ACTION_VIEW,webPage)
             holder.context.startActivity(webIntent)
+        }
+        holder.row.setOnClickListener {
+            //Toast.makeText(holder.context,"THE ID IS "+dataAtPosition.id,Toast.LENGTH_LONG).show()
+            val action = GameListFragmentDirections.actionGameListFragmentToGameDetailsFragment(dataAtPosition.id)
+            holder.row.findNavController().navigate(action)
         }
     }
 }

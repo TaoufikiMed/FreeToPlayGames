@@ -17,5 +17,18 @@
     <fragment
         android:id="@+id/gameListFragment"
         android:name="com.example.freetoplaygames.presentation.game_list.GameListFragment"
-        android:label="GameListFragment" />
+        android:label="GameListFragment" >
+        <action
+            android:id="@+id/action_gameListFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.example.freetoplaygames.presentation.game_details.GameDetailsFragment"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" >
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
