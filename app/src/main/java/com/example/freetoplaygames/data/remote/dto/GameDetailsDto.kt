@@ -28,6 +28,22 @@ data class GameDetailsDto(
 
 fun GameDetailsDto.toGameDetails() : GameDetails{
     return GameDetails(
-        description, developer, gameUrl, genre, id, minimumSystemRequirements, platform, publisher, releaseDate, screenshots, status, thumbnail, title
+        description,
+        developer,
+        gameUrl,
+        genre,
+        id,
+        minimumSystemRequirements,
+        platform,
+        publisher,
+        releaseDate,
+        status,
+        thumbnail,
+        title,
+        minimumSystemRequirements.graphics,
+        minimumSystemRequirements.memory,
+        minimumSystemRequirements.os,
+        minimumSystemRequirements.processor,
+        minimumSystemRequirements.storage
     )
 }

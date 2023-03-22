@@ -13,8 +13,13 @@ data class GameDetails (
     val platform: String,
     val publisher: String,
     val releaseDate: String,
-    val screenshots: List<Screenshot>,
+    //val screenshots: List<Screenshot>,
     val status: String,
     val thumbnail: String,
-    val title: String
+    val title: String,
+    val graphics: String,
+    val memory: String,
+    val os: String,
+    val processor: String,
+    val storage: String
 )

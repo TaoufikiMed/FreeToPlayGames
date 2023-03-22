@@ -55,7 +55,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/corner_shape"
-        android:backgroundTint="#FFCE12"
+        android:backgroundTint="@color/gold"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,38 +2,59 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayoutContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".presentation.game_details.GameDetailsFragment">
+
+        <ProgressBar
+            android:id="@+id/progressBarForDetails"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_info_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone"
+            android:textColor="@color/red"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/frameLayoutContainer"
+            app:layout_constraintEnd_toEndOf="@id/frameLayoutContainer"
+            app:layout_constraintStart_toStartOf="@id/frameLayoutContainer"
+            app:layout_constraintTop_toTopOf="@id/frameLayoutContainer" />
+
+        <ImageButton
+            android:id="@+id/img_load_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:minHeight="48dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/tv_info_details"
+            app:layout_constraintStart_toStartOf="@id/tv_info_details"
+            app:layout_constraintTop_toTopOf="@id/tv_info_details"
+            app:srcCompat="@drawable/ic_refresh"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/frameLayout3"
+            android:id="@+id/details_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.game_details.GameDetailsFragment">
-
-            <ProgressBar
-                android:id="@+id/progressBarForDetails"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_info_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="gone"
-                android:textColor="@color/red"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imgGame"
@@ -42,8 +63,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars"
-                />
+                tools:ignore="ImageContrastCheck"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tv_title_details"
@@ -63,14 +84,15 @@
                 android:id="@+id/tv_description_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:ellipsize="end"
                 android:maxLines="6"
                 android:text="Description"
                 app:fontFamily="@font/helvetica_neue_regular"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_title_details"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_details" />
 
             <TextView
@@ -92,10 +114,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/imgGame" />
 
             <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:id="@+id/divider"
+                android:layout_marginTop="10dp"
+                app:dividerColor="@color/divider_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description_details" />
@@ -105,29 +128,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="18sp"
                 android:text="Minimum System Requirements"
+                android:textSize="18sp"
                 app:fontFamily="@font/helvetica_neue_medium"
                 app:layout_constraintStart_toStartOf="@+id/tv_description_details"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-            <Button
-                android:id="@+id/btn_move_page"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/corner_shape"
-                android:backgroundTint="#FFCE12"
-                android:text="Game Page"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/gridLayout"
@@ -158,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:text="_"
-                    android:textColor="#04253C"
+                    android:textColor="@color/blue"
                     app:layout_column="1"
                     app:layout_row="0" />
 
@@ -179,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:text="_"
-                    android:textColor="#04253C"
+                    android:textColor="@color/blue"
                     app:layout_column="1"
                     app:layout_row="1" />
 
@@ -199,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:text="_"
-                    android:textColor="#04253C"
+                    android:textColor="@color/blue"
                     app:layout_column="1"
                     app:layout_row="2" />
 
@@ -219,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:text="_"
-                    android:textColor="#04253C"
+                    android:textColor="@color/blue"
                     app:layout_column="1"
                     app:layout_row="3" />
 
@@ -239,29 +244,72 @@
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:text="_"
-                    android:textColor="#04253C"
+                    android:textColor="@color/blue"
                     app:layout_column="1"
                     app:layout_row="4" />
 
 
             </androidx.gridlayout.widget.GridLayout>
 
-            <Button
-                android:id="@+id/btn_annuler"
-                android:layout_width="0dp"
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/dividerAction"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Annuler"
-                android:textColor="@color/white"
-                android:background="@drawable/corner_shape"
-                android:backgroundTint="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/btn_move_page"
-                app:layout_constraintStart_toStartOf="@+id/btn_move_page"
-                app:layout_constraintTop_toBottomOf="@+id/btn_move_page"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                android:layout_marginTop="10dp"
+                app:dividerColor="@color/divider_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gridLayout" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dividerAction">
+
+                <Button
+                    android:id="@+id/btn_move_page"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/corner_shape"
+                    android:backgroundTint="@color/gold"
+                    android:text="Game Page"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerAction" />
+
+                <Button
+                    android:id="@+id/btn_annuler"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/corner_shape"
+                    android:backgroundTint="@color/black"
+                    android:text="Annuler"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_move_page"
+                    app:layout_constraintStart_toStartOf="@+id/btn_move_page"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_move_page" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
