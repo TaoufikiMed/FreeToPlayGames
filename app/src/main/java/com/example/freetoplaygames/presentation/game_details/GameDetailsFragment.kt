@@ -37,45 +37,47 @@ class GameDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getGameDetails(args.gameId)
-        viewModel.state.observe(viewLifecycleOwner, Observer {
-            it.gameDetails?.let {game->
-                binding.imgGame.load(game.thumbnail){
-                    placeholder(R.drawable.joker)
+        lifecycleScope.launchWhenStarted {
+            viewModel.state.collect{
+                it.gameDetails?.let {game->
+                    binding.imgGame.load(game.thumbnail){
+                        placeholder(R.drawable.joker)
+                    }
+                    binding.tvTitleDetails.text=game.title
+                    binding.tvDescriptionDetails.text=game.description
+                    binding.tvGenreDetails.text=game.genre
+                    binding.tvOs.text=game.os
+                    binding.tvProcessor.text=game.processor
+                    binding.tvMemory.text=game.memory
+                    binding.tvGraphics.text=game.graphics
+                    binding.tvStorage.text=game.storage
+                    binding.btnMovePage.setOnClickListener {
+                        val webPage = Uri.parse(game.gameUrl)
+                        val webIntent = Intent(Intent.ACTION_VIEW,webPage)
+                        startActivity(webIntent)
+                    }
+                    binding.btnAnnuler.setOnClickListener {
+                        view.findNavController().popBackStack()
+                    }
+                    binding.progressBarForDetails.visibility=View.GONE
+                    binding.detailsView.visibility=View.VISIBLE
                 }
-                binding.tvTitleDetails.text=game.title
-                binding.tvDescriptionDetails.text=game.description
-                binding.tvGenreDetails.text=game.genre
-                binding.tvOs.text=game.os
-                binding.tvProcessor.text=game.processor
-                binding.tvMemory.text=game.memory
-                binding.tvGraphics.text=game.graphics
-                binding.tvStorage.text=game.storage
-                binding.btnMovePage.setOnClickListener {
-                    val webPage = Uri.parse(game.gameUrl)
-                    val webIntent = Intent(Intent.ACTION_VIEW,webPage)
-                    startActivity(webIntent)
+                if(it.isLoading){
+                    binding.progressBarForDetails.visibility=View.VISIBLE
+                    binding.detailsView.visibility=View.GONE
                 }
-                binding.btnAnnuler.setOnClickListener {
-                    view.findNavController().popBackStack()
-                }
-                binding.progressBarForDetails.visibility=View.GONE
-                binding.detailsView.visibility=View.VISIBLE
-            }
-            if(it.isLoading){
-                binding.progressBarForDetails.visibility=View.VISIBLE
-                binding.detailsView.visibility=View.GONE
-            }
 
-            if(it.error.isNotEmpty()){
-                binding.tvInfoDetails.text=it.error
-                binding.tvInfoDetails.visibility=View.VISIBLE
-                binding.progressBarForDetails.visibility=View.GONE
-                binding.detailsView.visibility=View.GONE
-                binding.imgLoadDetails.visibility=View.VISIBLE
-                binding.imgLoadDetails.setOnClickListener {
-                    view.findNavController().popBackStack()
+                if(it.error.isNotEmpty()){
+                    binding.tvInfoDetails.text=it.error
+                    binding.tvInfoDetails.visibility=View.VISIBLE
+                    binding.progressBarForDetails.visibility=View.GONE
+                    binding.detailsView.visibility=View.GONE
+                    binding.imgLoadDetails.visibility=View.VISIBLE
+                    binding.imgLoadDetails.setOnClickListener {
+                        view.findNavController().popBackStack()
+                    }
                 }
             }
-        })
+        }
     }
 }

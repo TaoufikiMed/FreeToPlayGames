@@ -19,20 +19,20 @@ class GameDetailsViewModel @Inject constructor(
     private val getGameDetailsUseCase: GetGameDetailsUseCase
 ) : ViewModel(){
 
-    private val _state : MutableLiveData<GameDetailsState> = MutableLiveData(GameDetailsState())
-    val state:LiveData<GameDetailsState> = _state
+    private val _state : MutableStateFlow<GameDetailsState> = MutableStateFlow(GameDetailsState())
+    val state:StateFlow<GameDetailsState> = _state
 
     fun getGameDetails(id: Int){
         getGameDetailsUseCase(id).onEach {
             when(it){
                 is Resource.Loading ->{
-                    _state.value = GameDetailsState(isLoading = true)
+                    _state.emit(GameDetailsState(isLoading = true))
                 }
                 is Resource.Success ->{
-                    _state.value = GameDetailsState(gameDetails = it.data)
+                    _state.emit(GameDetailsState(gameDetails = it.data))
                 }
                 is Resource.Error ->{
-                    _state.value = GameDetailsState(error = it.message.toString())
+                    _state.emit(GameDetailsState(error = it.message.toString()))
                 }
             }
         }.launchIn(viewModelScope)
